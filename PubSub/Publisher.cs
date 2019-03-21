@@ -26,6 +26,7 @@ namespace Homework.PubSub
         /// </summary>
         /// <returns>Whether <c>DataReceived</c> has an empty invocation list.</returns>
         public bool IsInvocationListEmpty() {
+            if (DataReceived == null) return true;
             return DataReceived.GetInvocationList().Length == 0;
         }
     }
