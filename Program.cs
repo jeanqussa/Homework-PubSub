@@ -12,13 +12,29 @@ namespace Homework.PubSub
         }
     }
 
-    public class WeatherPublisher {
-        public event EventHandler<WeatherEventArgs> WeatherDataReceived;
+    public class Publisher<T> where T : EventArgs {
+        public event EventHandler<T> DataReceived;
 
-        public virtual void OnWeatherDataReceived(WeatherEventArgs args) {
-            if (WeatherDataReceived != null) {
-                WeatherDataReceived(this, args);
+        public virtual void OnDataReceived(T args) {
+            if (DataReceived != null) {
+                DataReceived(this, args);
             }
+        }
+    }
+
+    public class PubSub<T> where T : EventArgs {
+        private Publisher<T> pub = new Publisher<T>();
+
+        public void Subscribe(string city, EventHandler<T> handler) {
+            pub.DataReceived += handler;
+        }
+
+        public void Unsubscribe(string city, EventHandler<T> handler) {
+            pub.DataReceived -= handler;
+        }
+
+        public void Publish(string city, T args) {
+            pub.OnDataReceived(args);
         }
     }
 
@@ -26,12 +42,12 @@ namespace Homework.PubSub
     {
         static void Main(string[] args)
         {
-            WeatherPublisher weatherPub = new WeatherPublisher();
+            var weatherPubSub = new PubSub<WeatherEventArgs>();
 
-            weatherPub.WeatherDataReceived += (sender, e) => Console.WriteLine("Temperature is " + e.Temperature);
+            weatherPubSub.Subscribe("Damascus", (sender, e) => Console.WriteLine("Temperature is " + e.Temperature));
 
-            weatherPub.OnWeatherDataReceived(new WeatherEventArgs(10.0, 14.3));
-            weatherPub.OnWeatherDataReceived(new WeatherEventArgs(12.2, 5.0));
+            weatherPubSub.Publish("Damascus", new WeatherEventArgs(10.0, 14.3));
+            weatherPubSub.Publish("Damascus", new WeatherEventArgs(12.2, 5.0));
         }
     }
 }
