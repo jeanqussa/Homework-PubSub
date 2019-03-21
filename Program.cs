@@ -25,15 +25,15 @@ namespace Homework.PubSub
     public class PubSub<T> where T : EventArgs {
         private Publisher<T> pub = new Publisher<T>();
 
-        public void Subscribe(string city, EventHandler<T> handler) {
+        public void Subscribe(string topic, EventHandler<T> handler) {
             pub.DataReceived += handler;
         }
 
-        public void Unsubscribe(string city, EventHandler<T> handler) {
+        public void Unsubscribe(string topic, EventHandler<T> handler) {
             pub.DataReceived -= handler;
         }
 
-        public void Publish(string city, T args) {
+        public void Publish(string topic, T args) {
             pub.OnDataReceived(args);
         }
     }
