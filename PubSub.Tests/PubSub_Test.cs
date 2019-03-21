@@ -13,7 +13,7 @@ namespace Homework.PubSub.Tests
         }
 
         [Fact]
-        public void CounterIncrementedFourTimes()
+        public void EverythingWorks()
         {
             int topicOne = 0;
             int topicTwo = 0;
