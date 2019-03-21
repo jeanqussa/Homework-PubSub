@@ -43,9 +43,11 @@ namespace Homework.PubSub.Tests
                 sumHumidity += e.Humidity;
             };
 
+            // Here we add the event hangler twice
             publisher.DataReceived += ev;
             publisher.DataReceived += ev;
 
+            // And we call it twice, resulting in 4 calls to ev
             publisher.OnDataReceived(new WeatherEventArgs(1.0, 2.0));
             publisher.OnDataReceived(new WeatherEventArgs(1.0, 2.0));
 
