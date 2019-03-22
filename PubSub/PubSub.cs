@@ -10,7 +10,7 @@ namespace Homework.PubSub
     /// <typeparam name="T">Type for handler arguments which is derived from <see cref="EventArgs"/>.</typeparam>
     /// <example>
     /// <code>
-    /// var pubSub = new PubSub<EventArgs>();
+    /// var pubSub = new PubSub&lt;EventArgs&gt;();
     /// pubSub.Subscribe("topic-1", (sender, e) => Console.WriteLine("Received event on topic-1"));
     /// pubSub.Subscribe("topic-2", (sender, e) => Console.WriteLine("Received event on topic-2"));
     /// pubSub.Publish("topic-1", EventArgs.Empty);
