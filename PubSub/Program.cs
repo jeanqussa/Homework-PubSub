@@ -21,7 +21,6 @@ namespace Homework.PubSub
             // Prints:
             //  Temperature in Damascus is 10
             //  Humidity in Homs is 51.5
-
         }
     }
 }
