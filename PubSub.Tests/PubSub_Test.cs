@@ -60,5 +60,11 @@ namespace Homework.PubSub.Tests
             Assert.Equal(7.0, sumTemperature);
             Assert.Equal(17.2, sumHumidity);
         }
+
+        [Fact]
+        public void UnsubscribeFromEmptyTopid()
+        {
+            pubSub.Unsubscribe("topicOne", (sender, e) => {});
+        }
     }
 }

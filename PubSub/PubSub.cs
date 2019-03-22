@@ -42,6 +42,10 @@ namespace Homework.PubSub
         /// <param name="topic">The topic from which to unsubscribe as string.</param>
         /// <param name="handler">The event handler function.</param>
         public void Unsubscribe(string topic, EventHandler<T> handler) {
+            // Check that publisher exists
+            if (!Publishers.ContainsKey(topic)) {
+                return;
+            }
             var publisher = Publishers[topic];
 
             // Remove handler from publisher's DataReceived event handler
